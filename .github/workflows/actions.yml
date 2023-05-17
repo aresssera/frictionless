@@ -27,7 +27,12 @@ jobs:
       - name: execute py script # run main.py
         run: python main.py
         
+      - name: check for changes
+        id: git-diff
+        run: echo ::set-output name=CHANGED::$(git diff --name-only HEAD HEAD~)
+        
       - name: commit and push changes
+        if: steps.git-diff.outputs.CHANGED != ''
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Github Action"
