@@ -19,6 +19,6 @@ def read_url(url):
           csvList.append(file_name)
 
     df = pd.DataFrame(csvList, columns= ['fileNames'])
-    df.to_csv('fileNames.csv')
+    df.to_csv('files/fileNames.csv')
 
 read_url(url)
