@@ -33,10 +33,7 @@ jobs:
           git config --local user.name "Github Action"
           git add .
           git commit -m "update filenames"
+          git push origin HEAD:main
           
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main 
+     
           
