@@ -18,7 +18,7 @@ def read_url(url):
         if '.csv' in file_name:
           csvList.append(file_name)
 
-    df = pd.DataFrame(csvList, columns= ['test0'])
+    df = pd.DataFrame(csvList, columns= ['test1'])
     df.to_csv('files/fileNames.csv')
 
 read_url(url)
