@@ -1,14 +1,20 @@
 name: run main.py
 
-on: push
+on:
+  push:
+    branches:
+      -main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
+    
       - name: checkout repo content
-        uses: actions/checkout@v3 # checkout the repository content to github runner
+        uses: actions/checkout@v2 # checkout the repository content to github runner
+    
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.2
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -22,6 +28,13 @@ jobs:
           pip install pip install pandas
           
       - name: execute py script # run main.py
-        env:
-          SOME_SECRET: ${{ secrets.SOME_SECRET }}
         run: python main.py
+        
+      - name: commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Github Action"
+          git add .
+          git commit -m "update filenames"
+          git push
+          
