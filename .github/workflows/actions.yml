@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
+      - name: check for changes
+        id: git-diff
+        run: echo ::set-output name=CHANGED::$(git diff --name-only HEAD HEAD~)
+    
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner
     
@@ -26,10 +30,6 @@ jobs:
           
       - name: execute py script # run main.py
         run: python main.py
-        
-      - name: check for changes
-        id: git-diff
-        run: echo ::set-output name=CHANGED::$(git diff --name-only HEAD HEAD~)
         
       - name: commit and push changes
         if: steps.git-diff.outputs.CHANGED != ''
