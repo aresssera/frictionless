@@ -40,7 +40,7 @@ jobs:
           git config --local user.name "Github Action"
           git add .
           git commit -m "run action from main branch"
-          git push origin ${{ github.ref }}
+          git push origin ${{ github.event.inputs.branch }}
           
      
           
