@@ -1,0 +1,20 @@
+name: frictionless
+
+on: 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'branch name'
+        required: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true # add this to download LFS files
+          submodules: true # add this to download submodules
+      - name: Validate data
+        uses: frictionlessdata/frictionless-ci@v2
