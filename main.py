@@ -1,9 +1,7 @@
-
 import requests     # 2.18.4
 import json         # 2.0.9
 import pandas as pd # 0.23.0
 import numpy as np
-import time
 import os
 import frictionless
 import ast
@@ -66,11 +64,9 @@ for index, row in df.iterrows():
 
   # storing the JSON response
   data_json = json.loads(response.read())
-
-  print('original datapackage: ')
-  print(data_json)
-
-
+    
+  print(fileName)
+    
   # change source file
   jsonAsString = str(data_json)
   jsonAsString = jsonAsString.replace(os.path.join(folderPath, fileName), stagingFilePath)
